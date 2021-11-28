@@ -12,8 +12,6 @@ terraform {
   }
 }
 
-resource "gitlab_project_variable" "sample" {
-  project = data.gitlab_project.aws_ecs_webapp_infra_project.id
-  key = "sample" 
-  value = "Greetings Earthlings!" 
+module "networks" {
+  source = "./modules/networks"
 }
