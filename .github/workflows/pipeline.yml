@@ -42,13 +42,3 @@ jobs:
       
     - name: "Run - Terraform Apply"
       run: terraform apply -input=false -auto-approve
-
-
-#     - name: Terraform Init
-#       uses: hashicorp/terraform-github-actions/init@v0.4.0
-
-#     - name: Terraform Validate
-#       uses: hashicorp/terraform-github-actions/validate@v0.3.7
-
-#     - name: Terraform Apply
-#       uses: hashicorp/terraform-github-actions/apply@v0.4.0
