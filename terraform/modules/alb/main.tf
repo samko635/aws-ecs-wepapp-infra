@@ -85,8 +85,9 @@ resource "aws_lb_listener_rule" "http_listener_rule" {
     type             = "forward"    
     target_group_arn = aws_lb_target_group.ecs_nginx_webapp.id
   }   
-  condition {    
-    field  = "path-pattern"    
-    values = ["/"]  
+  condition {
+    path_pattern {
+      values = ["/*"]
+    }
   }
 }
