@@ -16,7 +16,7 @@ resource "aws_lb" "main_alb" {
     name               = "main-alb"
     internal           = false
     load_balancer_type = "application"
-    security_groups    = [aws_security_group.allow_web_traffic.id]
+    security_groups    = [aws_security_group.alb_sg.id]
     subnets            = data.aws_subnet_ids.public.ids
 
     tags = {
@@ -25,13 +25,13 @@ resource "aws_lb" "main_alb" {
 }
 
 # SG
-resource "aws_security_group" "allow_web_traffic" {
-  name        = "allow_web_traffic"
-  description = "Allow Web inbound traffic"
+resource "aws_security_group" "alb_sg" {
+  name        = "alb_sg"
+  description = "ALB SecurityGroup"
   vpc_id      = data.aws_vpc.main.id
 
   tags = {
-    Name = "allow_web_traffic"
+    Name = "alb_sg"
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_security_group_rule" "alb_sg_ingress" {
     protocol                 = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     # cidr_blocks = [data.aws_vpc.main.cidr_block]
-    security_group_id        = aws_security_group.allow_web_traffic.id
+    security_group_id        = aws_security_group.alb_sg.id
 }
 
 # ALB security group egress rule
@@ -54,7 +54,7 @@ resource "aws_security_group_rule" "alb_sg_egress" {
     protocol                 = "-1"
     cidr_blocks = ["0.0.0.0/0"]
     # ipv6_cidr_blocks = ["::/0"]
-    security_group_id        = aws_security_group.allow_web_traffic.id
+    security_group_id        = aws_security_group.alb_sg.id
 }
 
 # Target group
