@@ -38,6 +38,7 @@ resource "aws_ecs_service" "nginx_webapp" {
 resource "aws_ecs_task_definition" "nginx_demo" {
   family = "service"
   requires_compatibilities = ["FARGATE"]
+  network_mode = "awsvpc"
   container_definitions = jsonencode([
     {
       name      = "nginx"
