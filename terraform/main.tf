@@ -20,3 +20,8 @@ module "alb" {
   source = "./modules/alb"
   vpc_id = module.networks.vpc_id
 }
+
+module "ecs" {
+  source = "./modules/ecs"
+  aws_lb_target_group_arn = module.alb.aws_lb_target_group_arn
+}
