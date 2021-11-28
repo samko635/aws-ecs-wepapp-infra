@@ -72,18 +72,18 @@ resource "aws_iam_role" "ecs_svc_role" {
   name = "nginx-webapp-ecs-role"
 
   assume_role_policy = <<EOF
-    {
-        "Version": "2008-10-17",
-        "Statement": [{
-            "Sid": "",
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ecs.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-        }]
-    }
-    EOF
+{
+    "Version": "2008-10-17",
+    "Statement": [{
+        "Sid": "",
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "ecs.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+    }]
+}
+EOF
 }
 
 # Attach AmazonEC2ContainerServiceRole policy to the new role
