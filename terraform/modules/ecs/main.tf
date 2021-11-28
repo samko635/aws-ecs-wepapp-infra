@@ -39,6 +39,7 @@ resource "aws_ecs_task_definition" "nginx_demo" {
   family = "service"
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
+  cpu = 256
   container_definitions = jsonencode([
     {
       name      = "nginx"
