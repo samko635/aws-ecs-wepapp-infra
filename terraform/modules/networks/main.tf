@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
     enable_dns_support = "true"
     enable_dns_hostnames = "true"
     enable_classiclink = "false"
-    tags {
+    tags = {
         Name = "main"
     }
 }
@@ -18,7 +18,7 @@ resource "aws_subnet" "main-public-1" {
     map_public_ip_on_launch = "true"
     availability_zone = "ap-southeast-2a"
 
-    tags {
+    tags = {
         Name = "main-public-1"
         Tier = "Public"
     }
@@ -29,7 +29,7 @@ resource "aws_subnet" "main-public-2" {
     map_public_ip_on_launch = "true"
     availability_zone = "ap-southeast-2b"
 
-    tags {
+    tags = {
         Name = "main-public-2"
         Tier = "Public"
     }
@@ -40,7 +40,7 @@ resource "aws_subnet" "main-public-3" {
     map_public_ip_on_launch = "true"
     availability_zone = "ap-southeast-2c"
 
-    tags {
+    tags = {
         Name = "main-public-3"
         Tier = "Public"
     }
@@ -73,7 +73,7 @@ resource "aws_subnet" "main-private-3" {
     map_public_ip_on_launch = "false"
     availability_zone = "ap-southeast-2c"
 
-    tags {
+    tags = {
         Name = "main-private-3"
         Tier = "Private"
     }
@@ -83,7 +83,7 @@ resource "aws_subnet" "main-private-3" {
 resource "aws_internet_gateway" "main-gw" {
     vpc_id = "${aws_vpc.main.id}"
 
-    tags {
+    tags = {
         Name = "main"
     }
 }
@@ -96,7 +96,7 @@ resource "aws_route_table" "main-public" {
         gateway_id = "${aws_internet_gateway.main-gw.id}"
     }
 
-    tags {
+    tags = {
         Name = "main-public-1"
     }
 }
