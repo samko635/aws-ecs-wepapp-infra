@@ -62,5 +62,6 @@ resource "aws_lb_target_group" "ecs_nginx_webapp" {
   name     = "ecs-nginx-webapp"
   port     = 80
   protocol = "HTTP"
+  target_type = "ip"
   vpc_id   = data.aws_vpc.main.id
 }
