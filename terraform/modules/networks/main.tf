@@ -51,7 +51,7 @@ resource "aws_subnet" "main-private-1" {
     map_public_ip_on_launch = "false"
     availability_zone = "ap-southeast-2a"
 
-    tags {
+    tags = {
         Name = "main-private-1"
         Tier = "Private"
     }
@@ -62,7 +62,7 @@ resource "aws_subnet" "main-private-2" {
     map_public_ip_on_launch = "false"
     availability_zone = "ap-southeast-2b"
 
-    tags {
+    tags = {
         Name = "main-private-2"
         Tier = "Private"
     }
