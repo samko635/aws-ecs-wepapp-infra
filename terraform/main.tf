@@ -15,3 +15,8 @@ terraform {
 module "networks" {
   source = "./modules/networks"
 }
+
+module "alb" {
+  source = "./modules/alb"
+  vpc_id = module.networks.vpc_id
+}
