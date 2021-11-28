@@ -4,8 +4,11 @@ data "aws_vpc" "main" {
 }
 
 # All subnet IDs
-data "aws_subnet_ids" "all" {
+data "aws_subnet_ids" "public" {
   vpc_id = data.aws_vpc.main.id
+  tags = {
+    Tier = "Public"
+  }
 }
 
 # ALB
@@ -14,7 +17,7 @@ resource "aws_lb" "main_alb" {
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.allow_web_traffic.id]
-    subnets            = data.aws_subnet_ids.all.ids
+    subnets            = data.aws_subnet_ids.public.ids
 
     tags = {
         Name = "main_alb"
