@@ -54,20 +54,7 @@ resource "aws_ecs_task_definition" "nginx_demo" {
           hostPort      = 80
         }
       ]
-    },
-    # {
-    #   name      = "second"
-    #   image     = "service-second"
-    #   cpu       = 10
-    #   memory    = 256
-    #   essential = true
-    #   portMappings = [
-    #     {
-    #       containerPort = 443
-    #       hostPort      = 443
-    #     }
-    #   ]
-    # }
+    }
   ])
 }
 
