@@ -37,6 +37,7 @@ resource "aws_ecs_service" "nginx_webapp" {
 # ECS task definition
 resource "aws_ecs_task_definition" "nginx_demo" {
   family = "service"
+  requires_compatibilities = ["FARGATE"]
   container_definitions = jsonencode([
     {
       name      = "nginx"
