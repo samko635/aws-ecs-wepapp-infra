@@ -65,3 +65,28 @@ resource "aws_lb_target_group" "ecs_nginx_webapp" {
   target_type = "ip"
   vpc_id   = data.aws_vpc.main.id
 }
+
+# Listener (80)
+resource "aws_lb_listener" "http_listener" {  
+  load_balancer_arn = aws_lb.main_alb.arn
+  port              = 80
+  protocol          = "HTTP"
+  
+  default_action {    
+    target_group_arn = aws_lb_target_group.ecs_nginx_webapp.arn
+    type             = "forward"  
+  }
+}
+
+resource "aws_lb_listener_rule" "http_listener_rule" {
+  listener_arn = aws_lb_listener.http_listener.arn
+  priority     = 100
+  action {    
+    type             = "forward"    
+    target_group_arn = aws_lb_target_group.ecs_nginx_webapp.id
+  }   
+  condition {    
+    field  = "path-pattern"    
+    values = ["/"]  
+  }
+}
