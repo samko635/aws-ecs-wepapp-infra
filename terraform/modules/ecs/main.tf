@@ -92,8 +92,8 @@ resource "aws_iam_role_policy_attachment" "ecs_svc_role_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
 }
 
-resource "aws_cloudwatch_log_group" "svc" {
-  count = "${length(var.log_groups)}"
-  name  = "${element(var.log_groups, count.index)}"
-  tags  = "${merge(var.tags, map("Name", format("%s", var.name)))}"
-}
+# resource "aws_cloudwatch_log_group" "svc" {
+#   count = "${length(var.log_groups)}"
+#   name  = "${element(var.log_groups, count.index)}"
+#   tags  = "${merge(var.tags, map("Name", format("%s", var.name)))}"
+# }
