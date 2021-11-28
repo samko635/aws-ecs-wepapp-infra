@@ -10,7 +10,7 @@ data "aws_subnet_ids" "all" {
 
 # ALB
 resource "aws_lb" "main_alb" {
-    name               = "main_alb"
+    name               = "main-alb"
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.allow_web_traffic.id]
