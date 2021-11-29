@@ -35,7 +35,7 @@ module "autoscaling" {
   ecs_service = module.ecs.ecs_service
 }
 
-module "iam" {
-  source = "./modules/iam"
-}
+# module "iam" {
+#   source = "./modules/iam"
+# }
 
