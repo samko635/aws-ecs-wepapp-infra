@@ -28,7 +28,7 @@ resource "aws_lb_target_group" "ecs_nginx_webapp" {
   port     = 80
   protocol = "HTTP"
   target_type = "ip"
-  vpc_id   = data.aws_vpc.main.id
+  vpc_id   = var.vpc_id
 }
 
 # Listener
@@ -62,7 +62,7 @@ resource "aws_lb_listener_rule" "http_listener_rule" {
 resource "aws_security_group" "alb_sg" {
   name        = "alb_sg"
   description = "ALB SecurityGroup"
-  vpc_id      = data.aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   tags = {
     Name = "ALB SecurityGroup"

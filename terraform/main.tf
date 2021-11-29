@@ -26,6 +26,7 @@ module "ecs" {
   aws_lb_target_group_arn = module.alb.aws_lb_target_group_arn
   vpc_id = module.networks.vpc_id
   alb_security_group_id = module.alb.alb_security_group_id
+  ecs_role = module.iam.ecs_role
 }
 
 module "autoscaling" {
@@ -33,3 +34,8 @@ module "autoscaling" {
   ecs_cluster = module.ecs.ecs_cluster
   ecs_service = module.ecs.ecs_service
 }
+
+module "iam" {
+  source = "./modules/iam"
+}
+

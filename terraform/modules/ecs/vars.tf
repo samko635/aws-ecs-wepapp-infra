@@ -10,3 +10,4 @@ variable "alb_security_group_id" {
   description = "ALB security group ID"
 }
 
+variable "ecs_role" {}
