@@ -77,7 +77,7 @@ resource "aws_ecs_task_definition" "nginx_demo" {
 resource "aws_security_group" "ecs_sg" {
   name        = "ecs_sg"
   description = "ECS SecurityGroup"
-  vpc_id      = data.aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   tags = {
     Name = "ECS SecurityGroup"
