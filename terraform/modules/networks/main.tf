@@ -1,4 +1,6 @@
-# Internet VPC
+####################################
+# VPC & Subnets
+####################################
 resource "aws_vpc" "main" {
     cidr_block = "10.1.0.0/16"
     instance_tenancy = "default"
@@ -78,6 +80,9 @@ resource "aws_subnet" "main_private_3" {
     }
 }
 
+####################################
+# Gateways
+####################################
 # Internet GW
 resource "aws_internet_gateway" "main_igw" {
     vpc_id = "${aws_vpc.main.id}"
@@ -85,11 +90,6 @@ resource "aws_internet_gateway" "main_igw" {
     tags = {
         Name = "main"
     }
-}
-
-# Elastic IP
-resource "aws_eip" "nat_gateway_eip" {
-  vpc = true
 }
 
 # Public NAT GW
@@ -103,8 +103,13 @@ resource "aws_nat_gateway" "main_nat" {
 
     depends_on = [aws_internet_gateway.main_igw]
 }
+resource "aws_eip" "nat_gateway_eip" {
+  vpc = true
+}
 
-# route tables
+####################################
+# Route tables
+####################################
 resource "aws_route_table" "main_public_rt" {
     vpc_id = "${aws_vpc.main.id}"
     route {
@@ -116,6 +121,7 @@ resource "aws_route_table" "main_public_rt" {
         Name = "main_public_route_table"
     }
 }
+
 resource "aws_route_table" "main_private_rt" {
     vpc_id = "${aws_vpc.main.id}"
     route {
@@ -128,7 +134,7 @@ resource "aws_route_table" "main_private_rt" {
     }
 }
 
-# route associations public
+# route associations
 resource "aws_route_table_association" "main_public_1_a" {
     subnet_id = "${aws_subnet.main_public_1.id}"
     route_table_id = "${aws_route_table.main_public_rt.id}"
