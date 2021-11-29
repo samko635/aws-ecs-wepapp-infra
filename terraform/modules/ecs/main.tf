@@ -54,7 +54,7 @@ resource "aws_ecs_task_definition" "nginx_demo" {
   network_mode = "awsvpc"
   cpu = 256
   memory    = 512
-  execution_role_arn = var.ecs_role.arn
+  # execution_role_arn = var.ecs_role.arn
   container_definitions = jsonencode([
     {
       name      = "nginx"
@@ -67,15 +67,7 @@ resource "aws_ecs_task_definition" "nginx_demo" {
           containerPort = 80
           hostPort      = 80
         }
-      ],
-      logConfiguration = {
-        logDriver = "awslogs",
-        options = {
-          awslogs-group: "/ecs/nginx_demo_tasks",
-          awslogs-region: "ap-southeast-2",
-          awslogs-stream-prefix: "ecs"
-        }
-      }
+      ]
     }
   ])
 }
