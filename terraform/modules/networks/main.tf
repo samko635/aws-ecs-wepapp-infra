@@ -1,4 +1,9 @@
 ####################################
+# Data
+####################################
+data "aws_availability_zones" "available" {}
+
+####################################
 # VPC & Subnets
 ####################################
 resource "aws_vpc" "main" {
@@ -17,7 +22,7 @@ resource "aws_subnet" "main_public_1" {
     vpc_id = "${aws_vpc.main.id}"
     cidr_block = "10.1.1.0/24"
     map_public_ip_on_launch = true
-    availability_zone = "ap-southeast-2a"
+    availability_zone = data.aws_availability_zones.available.names[0]
 
     tags = {
         Name = "main_public_1"
@@ -28,7 +33,7 @@ resource "aws_subnet" "main_public_2" {
     vpc_id = "${aws_vpc.main.id}"
     cidr_block = "10.1.2.0/24"
     map_public_ip_on_launch = true
-    availability_zone = "ap-southeast-2b"
+    availability_zone = data.aws_availability_zones.available.names[1]
 
     tags = {
         Name = "main_public_2"
@@ -39,7 +44,7 @@ resource "aws_subnet" "main_public_3" {
     vpc_id = "${aws_vpc.main.id}"
     cidr_block = "10.1.3.0/24"
     map_public_ip_on_launch = true
-    availability_zone = "ap-southeast-2c"
+    availability_zone = data.aws_availability_zones.available.names[2]
 
     tags = {
         Name = "main_public_3"
@@ -50,7 +55,7 @@ resource "aws_subnet" "main_private_1" {
     vpc_id = "${aws_vpc.main.id}"
     cidr_block = "10.1.4.0/24"
     map_public_ip_on_launch = false
-    availability_zone = "ap-southeast-2a"
+    availability_zone = data.aws_availability_zones.available.names[0]
 
     tags = {
         Name = "main_private_1"
@@ -61,7 +66,7 @@ resource "aws_subnet" "main_private_2" {
     vpc_id = "${aws_vpc.main.id}"
     cidr_block = "10.1.5.0/24"
     map_public_ip_on_launch = false
-    availability_zone = "ap-southeast-2b"
+    availability_zone = data.aws_availability_zones.available.names[1]
 
     tags = {
         Name = "main_private_2"
@@ -72,7 +77,7 @@ resource "aws_subnet" "main_private_3" {
     vpc_id = "${aws_vpc.main.id}"
     cidr_block = "10.1.6.0/24"
     map_public_ip_on_launch = false
-    availability_zone = "ap-southeast-2c"
+    availability_zone = data.aws_availability_zones.available.names[2]
 
     tags = {
         Name = "main_private_3"
