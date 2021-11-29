@@ -37,6 +37,5 @@ module "autoscaling" {
 
 module "iam" {
   source = "./modules/iam"
-  # alb = module.alb.alb
 }
 

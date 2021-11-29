@@ -20,36 +20,6 @@ resource "aws_iam_role" "ecs_service" {
 EOF
 }
 
-# data "aws_iam_policy_document" "ecs_service_alb" {
-#   statement {
-#     effect = "Allow"
-
-#     actions = [
-#       "ec2:Describe*"
-#     ]
-
-#     resources = [
-#       "*"
-#     ]
-#   }
-
-#   statement {
-#     effect = "Allow"
-
-#     actions = [
-#       "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
-#       "elasticloadbalancing:DeregisterTargets",
-#       "elasticloadbalancing:Describe*",
-#       "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-#       "elasticloadbalancing:RegisterTargets"
-#     ]
-
-#     resources = [
-#       var.alb.arn
-#     ]
-#   }
-# }
-
 data "aws_iam_policy_document" "ecs_service_standard" {
 
   statement {
@@ -108,14 +78,6 @@ data "aws_iam_policy_document" "ecs_service_scaling" {
   }
 }
 
-# resource "aws_iam_policy" "ecs_service_alb" {
-#   name = "dev-to-alb"
-#   path = "/"
-#   description = "Allow access to the service alb"
-
-#   policy = data.aws_iam_policy_document.ecs_service_alb.json
-# }
-
 resource "aws_iam_policy" "ecs_service_standard" {
   name = "ecs-standard"
   path = "/"
@@ -131,11 +93,6 @@ resource "aws_iam_policy" "ecs_service_scaling" {
 
   policy = data.aws_iam_policy_document.ecs_service_scaling.json
 }
-
-# resource "aws_iam_role_policy_attachment" "ecs_service_alb" {
-#   role = aws_iam_role.ecs_service.name
-#   policy_arn = aws_iam_policy.ecs_service_alb.arn
-# }
 
 resource "aws_iam_role_policy_attachment" "ecs_service_standard" {
   role = aws_iam_role.ecs_service.name
