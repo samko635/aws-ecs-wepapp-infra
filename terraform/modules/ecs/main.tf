@@ -42,6 +42,12 @@ resource "aws_ecs_service" "nginx_webapp" {
     container_port   = 80
   }
 
+  capacity_provider_strategy {
+    capacity_provider = "FARGATE"
+    weight = 1
+    base = 0
+  }
+
   lifecycle {
     ignore_changes = [desired_count]
   }
