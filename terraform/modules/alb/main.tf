@@ -1,12 +1,8 @@
 ####################################
 # Data
 ####################################
-data "aws_vpc" "main" {
-  id = var.vpc_id
-}
-
 data "aws_subnet_ids" "public" {
-  vpc_id = data.aws_vpc.main.id
+  vpc_id = var.vpc_id
   tags = {
     Tier = "Public"
   }

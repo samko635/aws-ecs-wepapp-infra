@@ -1,12 +1,8 @@
 ####################################
 # Data
 ####################################
-data "aws_vpc" "main" {
-  id = var.vpc_id
-}
-
 data "aws_subnet_ids" "private" {
-  vpc_id = data.aws_vpc.main.id
+  vpc_id = var.vpc_id
   tags = {
     Tier = "Private"
   }
@@ -71,14 +67,14 @@ resource "aws_ecs_task_definition" "nginx_demo" {
           hostPort      = 80
         }
       ],
-      logConfiguration = {
-        logDriver = "awslogs",
-        options = {
-          awslogs-group: "/ecs/nginx_demo_tasks",
-          awslogs-region: "ap-southeast-2",
-          awslogs-stream-prefix: "ecs"
-        }
-      }
+      # logConfiguration = {
+      #   logDriver = "awslogs",
+      #   options = {
+      #     awslogs-group: "/ecs/nginx_demo_tasks",
+      #     awslogs-region: "ap-southeast-2",
+      #     awslogs-stream-prefix: "ecs"
+      #   }
+      # }
     }
   ])
 }
