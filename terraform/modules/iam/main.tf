@@ -18,6 +18,10 @@ resource "aws_iam_role" "ecs_service" {
   ]
 }
 EOF
+
+  tags = {
+    Name = "ECS task execution IAM role"
+  }
 }
 
 data "aws_iam_policy_document" "ecs_service_standard" {
@@ -90,13 +94,18 @@ resource "aws_iam_policy" "ecs_service_scaling" {
   name = "ecs-scaling"
   path = "/"
   description = "Allow ecs service scaling"
-
   policy = data.aws_iam_policy_document.ecs_service_scaling.json
+  tags = {
+    Name = "ECS scaling access policy"
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service_standard" {
   role = aws_iam_role.ecs_service.name
   policy_arn = aws_iam_policy.ecs_service_standard.arn
+  tags = {
+    Name = "ECS standard access policy"
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service_scaling" {

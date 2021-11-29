@@ -43,8 +43,11 @@ resource "aws_ecs_service" "nginx_webapp" {
   }
 
   lifecycle {
-    ignore_changes = [
-      desired_count]
+    ignore_changes = [desired_count]
+  }
+
+  tags = {
+    Name = "ECS Nginx Web application service"
   }
 }
 
@@ -78,10 +81,16 @@ resource "aws_ecs_task_definition" "nginx_demo" {
       }
     }
   ])
+  tags = {
+    Name = "ECS Nginx Demo task definition"
+  }
 }
 
 resource "aws_cloudwatch_log_group" "nginx_demo_tasks_lg" {
   name = "/ecs/nginx_demo_tasks"
+  tags = {
+    Name = "ECS Nginx Demo app log group"
+  }
 }
 
 ####################################
