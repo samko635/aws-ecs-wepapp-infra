@@ -37,7 +37,7 @@ resource "aws_ecs_service" "nginx_webapp" {
 
   network_configuration {
     subnets = data.aws_subnet_ids.private.ids
-    security_groups = aws_security_group.ecs_sg.id
+    security_groups = [ aws_security_group.ecs_sg.id ]
   }
 
   ordered_placement_strategy {
