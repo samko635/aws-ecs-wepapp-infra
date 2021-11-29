@@ -88,6 +88,9 @@ resource "aws_iam_policy" "ecs_service_standard" {
   description = "Allow standard ecs actions"
 
   policy = data.aws_iam_policy_document.ecs_service_standard.json
+  tags = {
+    Name = "ECS standard access policy"
+  }
 }
 
 resource "aws_iam_policy" "ecs_service_scaling" {
@@ -103,9 +106,6 @@ resource "aws_iam_policy" "ecs_service_scaling" {
 resource "aws_iam_role_policy_attachment" "ecs_service_standard" {
   role = aws_iam_role.ecs_service.name
   policy_arn = aws_iam_policy.ecs_service_standard.arn
-  tags = {
-    Name = "ECS standard access policy"
-  }
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service_scaling" {
