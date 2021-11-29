@@ -40,10 +40,10 @@ resource "aws_ecs_service" "nginx_webapp" {
     security_groups = [ aws_security_group.ecs_sg.id ]
   }
 
-  ordered_placement_strategy {
-    type  = "binpack"
-    field = "cpu"
-  }
+  # ordered_placement_strategy {
+  #   type  = "binpack"
+  #   field = "cpu"
+  # }
 
   load_balancer {
     target_group_arn = var.aws_lb_target_group_arn
