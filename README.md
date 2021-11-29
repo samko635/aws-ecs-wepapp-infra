@@ -1,6 +1,10 @@
 # Scalable webapp infra on AWS ECS
 
 This repository is created to deploy scalable web application infrastructure to AWS using Terraform.
+## 0. Test link
+This web application is accesible via below link;
+
+- http://main-alb-1167346256.ap-southeast-2.elb.amazonaws.com/
 
 ## 1. Components
 
