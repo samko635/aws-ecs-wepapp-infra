@@ -45,7 +45,7 @@ resource "aws_ecs_service" "nginx_webapp" {
     container_name   = "nginx"
     container_port   = 80
   }
-  
+
   lifecycle {
     ignore_changes = [
       desired_count]
@@ -70,7 +70,15 @@ resource "aws_ecs_task_definition" "nginx_demo" {
           containerPort = 80
           hostPort      = 80
         }
-      ]
+      ],
+      logConfiguration = {
+        logDriver = "awslogs",
+        options = {
+          awslogs-group: "/ecs/nginx_demo_tasks",
+          awslogs-region: "ap-southeast-2",
+          awslogs-stream-prefix: "ecs"
+        }
+      }
     }
   ])
 }
