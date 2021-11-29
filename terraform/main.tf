@@ -24,4 +24,6 @@ module "alb" {
 module "ecs" {
   source = "./modules/ecs"
   aws_lb_target_group_arn = module.alb.aws_lb_target_group_arn
+  vpc_id = module.networks.vpc_id
+  alb_security_group_id = module.alb.alb_security_group_id
 }

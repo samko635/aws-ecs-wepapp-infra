@@ -24,7 +24,7 @@ resource "aws_lb" "main_alb" {
     }
 }
 
-# SG
+# ALB security group
 resource "aws_security_group" "alb_sg" {
   name        = "alb_sg"
   description = "ALB SecurityGroup"
