@@ -3,7 +3,7 @@
 ####################################
 resource "aws_appautoscaling_target" "ecs_nginx_webapp_target" {
   max_capacity = 10
-  min_capacity = 1
+  min_capacity = 3
   resource_id = "service/${var.ecs_cluster.name}/${var.ecs_service.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace = "ecs"
