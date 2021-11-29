@@ -45,6 +45,11 @@ resource "aws_ecs_service" "nginx_webapp" {
     container_name   = "nginx"
     container_port   = 80
   }
+  
+  lifecycle {
+    ignore_changes = [
+      desired_count]
+  }
 }
 
 resource "aws_ecs_task_definition" "nginx_demo" {

@@ -27,3 +27,9 @@ module "ecs" {
   vpc_id = module.networks.vpc_id
   alb_security_group_id = module.alb.alb_security_group_id
 }
+
+module "autoscaling" {
+  source = "./module/autoscaling"
+  ecs_cluster = module.ecs.ecs_cluster
+  ecs_service = module.ecs.ecs_service
+}
