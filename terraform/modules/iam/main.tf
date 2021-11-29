@@ -2,7 +2,7 @@
 # IAM resources (for ECS)
 ####################################
 resource "aws_iam_role" "ecs_service" {
-  name = "ecs-service"
+  name = "ecs-task-execution-role"
 
   assume_role_policy = <<EOF
 {
@@ -117,7 +117,7 @@ data "aws_iam_policy_document" "ecs_service_scaling" {
 # }
 
 resource "aws_iam_policy" "ecs_service_standard" {
-  name = "dev-to-standard"
+  name = "ecs-standard"
   path = "/"
   description = "Allow standard ecs actions"
 
@@ -125,7 +125,7 @@ resource "aws_iam_policy" "ecs_service_standard" {
 }
 
 resource "aws_iam_policy" "ecs_service_scaling" {
-  name = "dev-to-scaling"
+  name = "ecs-scaling"
   path = "/"
   description = "Allow ecs service scaling"
 

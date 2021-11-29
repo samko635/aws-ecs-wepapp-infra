@@ -80,6 +80,10 @@ resource "aws_ecs_task_definition" "nginx_demo" {
   ])
 }
 
+resource "aws_cloudwatch_log_group" "nginx_demo_tasks_lg" {
+  name = "/ecs/nginx_demo_tasks"
+}
+
 ####################################
 # Security group for ECS
 ####################################
