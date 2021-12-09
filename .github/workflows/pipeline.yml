@@ -36,9 +36,12 @@ jobs:
     - name: "Run - Terraform Init"
       run: terraform init -input=false
 
-    - name: "Run - Terraform Plan"
-      id: plan
-      run: terraform plan -input=false -no-color
+    # - name: "Run - Terraform Plan"
+    #   id: plan
+    #   run: terraform plan -input=false -no-color
       
-    - name: "Run - Terraform Apply"
-      run: terraform apply -input=false -auto-approve
+    # - name: "Run - Terraform Apply"
+    #   run: terraform apply -input=false -auto-approve
+
+    - name: "Run - Terraform Destroy"
+      run: terraform destroy -auto-approve
